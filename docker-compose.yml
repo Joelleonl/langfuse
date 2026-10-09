@@ -5,7 +5,12 @@
 # External connections from other machines will not be able to reach these services directly.
 services:
   langfuse-worker:
-    image: docker.langfuse.com/langfuse/langfuse-worker:4
+    # Built from this source tree like langfuse-web, so both match the database
+    # schema (the upstream :4 worker image can be newer than this source).
+    image: langfuse-worker-flyyy:local
+    build:
+      context: .
+      dockerfile: ./worker/Dockerfile
     restart: always
     depends_on: &langfuse-depends-on
       postgres:
