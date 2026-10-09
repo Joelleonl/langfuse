@@ -347,6 +347,9 @@ export const env = createEnv({
     // EE License
     LANGFUSE_EE_LICENSE_KEY: z.string().optional(),
     ADMIN_API_KEY: z.string().optional(),
+    // Shared secret for the FLYYY provisioning API (/api/flyyy/v1/*).
+    // Unset = the API is disabled and responds 404.
+    FLYYY_PROVISIONING_SECRET: z.string().min(32).optional(),
     ENCRYPTION_KEY: z
       .string()
       .length(
@@ -1089,6 +1092,7 @@ export const env = createEnv({
     // EE License
     LANGFUSE_EE_LICENSE_KEY: process.env.LANGFUSE_EE_LICENSE_KEY,
     ADMIN_API_KEY: process.env.ADMIN_API_KEY,
+    FLYYY_PROVISIONING_SECRET: process.env.FLYYY_PROVISIONING_SECRET,
     ENCRYPTION_KEY: process.env.ENCRYPTION_KEY,
     LANGFUSE_AI_GATEWAY_SERVICE_KEY:
       process.env.LANGFUSE_AI_GATEWAY_SERVICE_KEY,
